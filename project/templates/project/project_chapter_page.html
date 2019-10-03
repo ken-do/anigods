@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load static %}
+{% load project_tags %}
+{% block body_class %}template-projectchapterpage{% endblock %}
+
+    {% block before-content %}   
+    <div class="row chapter-nav chapter-nav-top">
+                <div class="input-field col s12 xl7">
+                    <h1><a href="{{ page.get_parent.url }}">{{page.get_parent.title}}</a> - {{page.title}}</h1>
+                </div>  
+                <div class="input-field col s6 xl3">
+                    <select class="project-child-select">
+                      {% for chapter_page in page.get_parent.get_children %}
+                        {% if chapter_page.slug == page.slug %}
+                            <option value="{{chapter_page.slug}}" selected>{{chapter_page.title}}</option>
+                        {% else %}
+                            <option value="{{chapter_page.slug}}">{{chapter_page.title}}</option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+                    <label>Chọn chapter</label>
+                </div>
+                <div class="col s6 xl2 chapter-nav-icons">
+                        <span class="project-child-prev"><a href="#"><i class="fa fa-arrow-alt-circle-left"></i></a></span>
+                        <span class="project-child-next"><a href="#"><i class="fa fa-arrow-alt-circle-right"></i></a></span>
+                        <span class="chapter-parent"><a href="{{ page.get_parent.url }}"><i class="fa fa-list-alt"></i></a></span>
+                </div>
+        </div>
+    {% endblock %}
+    {% block content %}
+    <div class="row chapter-content">
+        <div class="col s12">
+            <ul class="chapter-content">
+                {% for _ in page.chapter_content.url|get_total_images|times %}
+                    <li><img src="/media/project_resources/manga/{{page.get_parent.slug}}/chap-{{page.chapter_number}}/chap-{{page.chapter_number}}_{{forloop.counter0|stringformat:'03d'}}.jpg"></li>
+                {% endfor %}
+            </ul>
+        </div> 
+    </div>  
+    {% endblock %}
+    {% block after-content %}   
+    <div class="row chapter-nav chapter-nav-bottom">
+        <div class="input-field col s12 xl7">
+            <h1><a href="{{ page.get_parent.url }}">{{page.get_parent.title}}</a> - {{page.title}}</h1>
+        </div>  
+        <div class="input-field col s6 xl3">
+            <select class="project-child-select"><!--fixed here-->
+              {% for chapter_page in page.get_parent.get_children %}
+                {% if chapter_page.slug == page.slug %}
+                    <option value="{{chapter_page.slug}}" selected>{{chapter_page.title}}</option>
+                {% else %}
+                    <option value="{{chapter_page.slug}}">{{chapter_page.title}}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+            <label>Chọn chapter</label>
+        </div>
+        <div class="col s6 xl2 chapter-nav-icons">
+                <span class="project-child-prev"><a href="#"><i class="fa fa-arrow-alt-circle-left"></i></a></span>
+                <span class="project-child-next"><a href="#"><i class="fa fa-arrow-alt-circle-right"></i></a></span>
+                <span class="chapter-parent"><a href="{{ page.get_parent.url }}"><i class="fa fa-list-alt"></i></a></span>
+        </div>
+    </div>
+    {% endblock %}

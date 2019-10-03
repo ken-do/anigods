@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags anime_tags%}
+
+{% block body_class %}template-homepage{% endblock %}
+{% block container_class %}full-width{% endblock %}
+{% block content %}
+<div class="slider">
+  <ul class="slides">
+      {% for block in page.slider %}
+          {% include_block block %}
+      {% endfor %}         
+  </ul>
+</div>
+<div class="seasonal-anime">
+  <h1>{{page.featured_anime_heading}}</h1>
+  <h3 class="intro">{{page.featured_anime_subheading}}</h3>
+  <div class="owl-carousel row">  
+    {% for block in page.featured_anime %}
+      {% include_block block %}
+    {% endfor %}
+  </div>
+  <div class="show-more-btn right-align"><a class="btn-floating btn-large waves-effect waves-light red" href="/anime"><i class="material-icons">arrow_forward</i></a> </div>
+</div>
+<div class="anigods-project">
+  <h1>{{page.featured_projects_heading}}</h1>
+  <h3 class="intro">{{page.featured_projects_subheading}}</h3>
+  <div class="row">
+    {% for block in page.featured_projects %}
+      {% include_block block %}
+    {% endfor %}
+  </div>
+</div>
+</div>
+{% endblock %}

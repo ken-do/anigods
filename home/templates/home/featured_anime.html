@@ -1,0 +1,31 @@
+
+{% load wagtailcore_tags wagtailimages_tags anime_tags%}
+<div class="item">
+    <div class="card horizontal anime-card">
+        <div class="card-image">
+            <a href="{% pageurl value %}">{% image value.specific.featured_image fill-320x455 class="activator"%}</a>
+            <div class="anime-card-title-studio">
+                <h2 class="anime-card-title"><a href="{% pageurl value %}">{{ value.title }}</a></h2>
+            </div>
+        </div>
+        <div class="card-stacked">
+            <div class="card-content">
+                <p class="anime-card-release-time"><a href="{% url 'anime:release_time' value.specific.season value.specific.year %}"><span
+                    class="anime-card-season">{{ value.specific.season|title }}</span> <span class="anime-card-year">{{value.specific.year }}</span></a></p>
+                <p class="anime-card-format"><a href="{% url 'anime:format' value.specific.format %}">{{value.specific.format|to_space:"-"|upper }}</a></p>
+                <p class="anime-card-intro">{{ value.specific.intro }}</p>
+                {% if value.specific.tags %}
+                <div class="card-tags">
+                    {% for tag in value.specific.tags.all %}
+                    {% if forloop.last %}
+                    <a href="{% url 'anime:tag' tag %}">{{ tag }}</a>
+                    {% else %}
+                    <a href="{% url 'anime:tag' tag %}">{{ tag }},</a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

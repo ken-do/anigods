@@ -1,0 +1,74 @@
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags home_tags %}
+
+<footer class="footer page-footer">
+  <nav class="black center-align breadcrumb-list">
+    <div class="nav-wrapper black">
+      {% if self.get_ancestors|length > 1 %}
+      <div class="col s12 black">
+        {% for page in self.get_ancestors %}
+        {% if page.is_root == False %}
+        <a href="{% pageurl page %}" class="breadcrumb">{{ page.title }}</a>
+        {% endif %}
+        {% endfor %}
+
+        <a class="active breadcrumb">{{ self.title }}</a>
+
+      </div>
+      {% endif %}
+    </div>
+  </nav>
+
+  <div class="footer-content">
+    <div class="row">
+      <div class="col l2 s12"></div>
+      <div class="col l2 s12  footer-about">
+        <h5 class="white-text">Giới thiệu</h5>
+        <p class="grey-text text-lighten-4">AniGods tập trung vào việc dịch
+          manga/anime cũng như cập nhật các tin tức mới
+          nhất của cộng đồng~!. Nhóm hoạt động vì mục đích phi lợi nhuận.
+        </p>
+      </div>
+      <div class="col l1 s12 footer-nav">
+        <h5 class="white-text">Danh Mục</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="/">Trang Chủ</a></li>
+          <li><a class="grey-text text-lighten-3" href="/anime">Season</a></li>
+          <li><a class="grey-text text-lighten-3" href="/du-an/manga">Dự Án - Manga</a></li>
+          <li><a class="grey-text text-lighten-3" href="/du-an/anime">Dự Án - Anime</a></li>
+        </ul>
+      </div>
+      <div class="col l2 s12 footer-latest">
+        <h5 class="white-text">Manga</h5>
+        <ul>
+          {% get_latest_chapters as chapters %}
+          {% for chap in chapters %}
+          <li><a class="grey-text text-lighten-3" href="{{chap.url}}">{{chap.get_parent.title}} - Chap
+              {{chap.chapter_number}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col l2 s12 footer-latest-anime">
+        <h5 class="white-text">Anime</h5>
+        <ul>
+          {% get_latest_episodes as eps %}
+          {% for ep in eps %}
+          <li><a class="grey-text text-lighten-3" href="{{ep.url}}">{{ep.get_parent.title}} - Ep {{ep.episode_number}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col l2 s12"></div>
+    </div>
+    <div class="footer-copyright center-align">
+      <div>
+        Copyright © {% now 'Y' %} <a href="/">Anigods</a>
+      </div>
+    </div>
+</footer>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/materialize.min.js' %}"></script>
+<script src="{% static 'js/init.js' %}"></script>
+</body>
+
+</html>

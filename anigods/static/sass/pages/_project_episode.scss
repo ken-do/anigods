@@ -1,0 +1,204 @@
+.template-projectepisodepage    {
+
+    background-color: $color-grey;
+
+    .container{
+        padding: 0;
+        display: flex;
+        align-items:center;
+        max-width: unset;
+        width:90%;
+    }
+
+    .container .row .col{
+        margin: 0;
+    }
+
+   
+
+    .row.episode-nav {
+        align-items: center;
+        background: white;
+        margin: 0;
+
+        &-top{
+            margin-bottom: remy(60);
+        }
+    
+        &-bottom{
+            margin-top: remy(60);
+        }
+        
+        .col {
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        h1{
+            font-size: 2.28rem;
+            margin: 1.52rem 0 .912rem;
+            line-height: 110%;
+            font-weight: 400;
+        }
+
+        i{
+            font-size: remy(28);
+        }
+
+        .episode-nav-icons{
+            a{
+                color: $color-orange-light;
+
+                &:hover{
+                    color: $color-orange;
+                }
+            }
+
+            span{
+                margin: 0 3px;
+            }
+
+        }
+    }
+
+
+    .collection .collection-item.avatar{
+        padding-left: 15px;
+        a {
+            display: flex;
+            color: black;
+        }
+
+    }
+
+    ul.collection.episode-list{
+        margin:0;
+        max-height: remy(650);
+        overflow: auto;
+    }
+
+
+    .episode-box-image{
+        position: relative;
+
+
+        img{
+            width: unset!important;
+        }
+    
+        .episode_play_icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+
+            i{
+                font-size: 60px;
+                color: white;
+                opacity: 0;
+                transition: 0.2s opacity;
+            }
+            
+        }
+    }
+
+
+    .episode-list-item:hover{
+
+        i{
+        opacity: 1;
+    }
+}
+    .episode-box-info{
+
+        margin-top: 0;
+        margin-left: remy(15);
+
+        h2.title{
+            margin-top: 0;
+            margin-top: 0;
+            font-size: remy(22);
+            margin-bottom: remy(10);
+            font-weight: bold;
+        }
+
+        
+    }
+
+    .episode-content{
+        margin: 0;
+    }
+
+}
+
+
+
+    /****
+
+*****************
+  Media Query Classes
+**********************/
+
+@media #{$small-and-down} {
+    // styles for small screens and down
+
+}
+
+
+@media #{$medium-and-down} {
+    .template-projectepisodepage{
+        .row.episode-nav {
+
+            padding: 0 remy(25);
+
+            h1{
+                font-size: remy(26);
+            }
+        }
+    }
+
+
+    .episode-box-image{
+
+        img{
+            max-width: 90%;
+        }
+
+    }
+}
+
+
+@media #{$medium-and-up} {
+    // styles for medium screens and larger
+    .template-projectepisodepage    {
+
+        .row.episode-nav {
+            padding: 0 remy(65);
+        }
+    }    
+}
+
+@media #{$large-and-up} {
+    .template-projectepisodepage    {
+
+
+    .row.episode-nav {
+        padding: 0 remy(170);
+
+        i{
+            font-size: remy(35);
+        }
+    }
+    }
+}
+
+@media #{$extra-large-and-up} {
+    // styles for extra large screens and up
+
+    .template-projectepisodepage    {
+
+        .row.episode-nav {
+            padding: 0 remy(200);
+          }
+        }
+}

@@ -1,0 +1,66 @@
+
+
+.progress{
+    margin: 0;
+    position: absolute;
+    top: 100%;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.container .row .col{
+    float: none;
+    margin: remy(15) 0;
+}
+
+.card{
+    height: 100%;
+}
+
+nav i{
+    height: unset;
+}
+
+
+.card.horizontal{
+    flex-wrap: wrap;
+}
+
+.dropdown-content li>a, .dropdown-content li>span{
+    color: $color-orange-light;
+    transition: 0.4s color;
+}
+
+.dropdown-content li:hover > a, .dropdown-content li:hover > span{
+    color: $color-orange;
+}
+
+
+.select-wrapper input.select-dropdown{
+    border-color: black;
+
+    &:focus{
+        border-color: $color-orange-light;
+    }
+
+}
+
+.page-footer{
+    background: black;
+}
+
+.page-footer .footer-copyright{
+    display: block;
+}
+
+textarea {
+    height: unset;
+}
+
+input:not([type]), input[type=date]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=email]:not(.browser-default), input[type=number]:not(.browser-default), input[type=password]:not(.browser-default), input[type=search]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=text]:not(.browser-default), input[type=time]:not(.browser-default), input[type=url]:not(.browser-default), textarea.materialize-textarea{
+    font-size: 15px;
+}

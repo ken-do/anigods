@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}{{ user.display_name }}{% endblock %}
+
+{% block heading_text %}User Profile{% endblock %}
+
+{% block content %}
+    <div>
+            {% if user.avatar %}
+            <img class="user-profile-thumbnail" src="/media/{{user.avatar}}" width="50" height="50">
+            {% else %}
+            <img class="user-profile-thumbnail" src="/static/images/default-profile_50x50.png">
+            {% endif %}
+        <h3>
+            {{ user.display_name }}
+        </h3>
+
+        <p>
+            {{ user.bio }}
+        </p>
+
+        <p>
+            You can edit your profile <a href="{% url 'users:settings' %}">here</a>. If you want. No pressure.
+        </p>
+    </div>
+{% endblock content %}

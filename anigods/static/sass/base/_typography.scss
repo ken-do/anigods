@@ -1,0 +1,83 @@
+h1, h2, h3,h4,h5,h6{
+    font-family: $font-title;
+}
+
+p{
+    font-family: $font-body;
+    font-weight: 400;
+    line-height: remy(26);
+}
+
+span,a,label,input,select,option {
+    font-family: $font-body;
+}
+
+a {
+    color: $color-orange;
+    transition: all .4s;
+    
+    &:hover {
+        color: $color-red-bright;
+    }
+}
+
+
+.intro {
+    font-size: remy(20);
+    margin-top: remy(15);
+}
+
+.card .card-title{
+    font-size: remy(22);
+}
+
+[class*=indexpage] h1,[class*=indexpage] .intro{
+    padding: 0 0.75rem;
+}
+
+.meta-info-title{
+    font-size: remy(30);
+    
+    strong{
+        color: $color-orange;
+    }
+}
+
+
+
+
+    /****
+
+*****************
+  Media Query Classes
+**********************/
+
+@media #{$small-and-down} {
+    // styles for small screens and down
+
+}
+
+@media #{$medium-and-up} {
+    // styles for medium screens and larger
+}
+
+@media #{$medium-and-down} {
+    .project-title, .anime-title{
+        font-size: remy(32);
+    }
+    
+    
+}
+
+@media #{$large-and-up} {
+    .project-title,.anime-title{
+        font-size: remy(36);
+    }
+}
+
+@media #{$extra-large-and-up} {
+    // styles for extra large screens and up
+    .project-title,.anime-title {
+        font-size: remy(54);
+    }
+}

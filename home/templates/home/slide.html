@@ -1,0 +1,11 @@
+{% load wagtailcore_tags wagtailimages_tags%}
+
+<li>    
+{% image value.background original %}
+  <div class="caption center-align">
+    <h3>{{value.heading}}</h3>
+    <h5 class="light grey-text text-lighten-3">{{value.description}}</h5>
+    <div class="slide-cta"><a href="{{value.destination_page.url}}">{{value.button_text}}</a></div>
+  </div>
+</li>
+          

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load project_tags %}
+{% block content %}
+<div class="row project-content">
+    <div class="col s12 l6">
+            <h1 class="project-title">{{ page.title }}</h1>
+            <div class="featured-image show-on-medium-and-down hide-on-large-only">{% image page.featured_image fill-675x970 %}</div>
+            <div class="project-section-information">
+                <h6 class="weight-600">Nội dung:</h6>
+                <article>
+                        {% for block in page.body %}
+                            <section>{% include_block block %}</section>
+                        {% endfor %}
+                </article>
+            </div>
+            <div class="project-section-chapters">
+                <h6 class="header" style="font-weight: bold;margin: 0;background: #26a69a;padding: 10px 22px;color: white;">
+                    {% if page.get_parent.title == "Anime" %}
+                        Xem phim
+                    {% else %}
+                        Đọc truyện
+                    {% endif %}                   
+                </h6>
+                <div class="collection" style="max-height: 169px;overflow-y: auto;margin: 0;">
+                    {% for project_child in page.get_children reversed %}
+                    <a href="{% pageurl project_child %}" class="collection-item">{{project_child.title}}<span class="right">{{project_child.first_published_at|to_ago}}</span></a>
+                    {% endfor %}  
+                </div>
+            </div>
+            {% if page.tags.all.count %}
+            <div class="project-section-tags">
+            <h6><span class="weight-600">Thể loại:</span></h6>
+                <div class="tags">
+                    {% for tag in page.tags.all %}
+                    <a class="project-tag-item" href="{% url 'project:tag' tag %}">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            <div class="project-section-go-back"><a class="see-projects-btn" href="{{ page.get_parent.url }}"><i class="material-icons">arrow_back</i><span class="flow-text"> Các dự án khác</span></a></div>
+    </div>
+    <div class="col s12 l1"></div>
+    <div class="col s12 l5">
+        <div class="featured-image hide-on-med-and-down">{% image page.featured_image fill-675x970 %}</div>
+    </div>
+</div>
+{% endblock %}

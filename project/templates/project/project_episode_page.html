@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load static %}
+{% load project_tags %}
+{% block body_class %}template-projectepisodepage{% endblock %}
+
+{% block before-content %}
+<div class="row episode-nav episode-nav-top">
+    <div class="input-field col s12 xl7">
+        <h1><a href="{{ page.get_parent.url }}">{{page.get_parent.title}}</a> - {{page.title}}</h1>
+    </div>
+    <div class="input-field col s6 xl3">
+        <select class="project-child-select">
+            {% for episode_page in page.get_parent.get_children %}
+            {% if episode_page.slug == page.slug %}
+            <option value="{{episode_page.slug}}" selected>{{episode_page.title}}</option>
+            {% else %}
+            <option value="{{episode_page.slug}}">{{episode_page.title}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <label>Chọn episode</label>
+    </div>
+    <div class="col s6 xl2 episode-nav-icons">
+        <span class="project-child-prev"><a href="#"><i class="fa fa-arrow-alt-circle-left"></i></a></span>
+        <span class="project-child-next"><a href="#"><i class="fa fa-arrow-alt-circle-right"></i></a></span>
+        <span class="episode-parent"><a href="{{ page.get_parent.url }}"><i class="fa fa-list-alt"></i></a></span>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="row episode-content">
+    <div class="col s12 xl8">
+        <div class="episode-content">
+            {% image page.episode_featured_image original as thumbnail %}
+            <video width="100%" height="auto" poster="{{ thumbnail.url }}" preload="metadata" controls>
+                <source src="/media/project_resources/anime/{{page.get_parent.slug}}/{{page.episode_number}}.mp4" type="video/mp4">
+                Your browser does not support this vide format, please use the latest version of Chrome.
+            </video>
+        </div>
+    </div>
+    <div class="col s12 xl4">
+            <ul class="collection episode-list">
+                    {% for episode_page in page.get_parent.get_children.specific %}
+                    <li class="collection-item avatar episode-list-item">
+                        <a href="{% pageurl episode_page %}">
+                            <div class="episode-box-image">
+                                    {% image episode_page.episode_featured_image fill-240x135 %}
+                                    <div class="episode_play_icon"><i class="material-icons">play_circle_filled</i></div>
+                            </div>
+                        <div class="episode-box-info">
+                                <h2 class="title">{{page.get_parent.title}} - {{episode_page.title}}</h2>
+                                <p>Update: {{episode_page.first_published_at|to_ago}}</p>
+                        </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+    </div>
+</div>
+{% endblock %}
+{% block after-content %}
+<div class="row episode-nav episode-nav-bottom">
+    <div class="input-field col s12 xl7">
+        <h1><a href="{{ page.get_parent.url }}">{{page.get_parent.title}}</a> - {{page.title}}</h1>
+    </div>
+    <div class="input-field col s6 xl3">
+        <select class="project-child-select">
+            {% for episode_page in page.get_parent.get_children %}
+            {% if episode_page.slug == page.slug %}
+            <option value="{{episode_page.slug}}" selected>{{episode_page.title}}</option>
+            {% else %}
+            <option value="{{episode_page.slug}}">{{episode_page.title}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <label>Chọn episode</label>
+    </div>
+    <div class="col s6 xl2 episode-nav-icons">
+        <span class="project-child-prev"><a href="#"><i class="fa fa-arrow-alt-circle-left"></i></a></span>
+        <span class="project-child-next"><a href="#"><i class="fa fa-arrow-alt-circle-right"></i></a></span>
+        <span class="episode-parent"><a href="{{ page.get_parent.url }}"><i class="fa fa-list-alt"></i></a></span>
+    </div>
+</div>
+{% endblock %}

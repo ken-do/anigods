@@ -1,0 +1,61 @@
+{% load static wagtailuserbar %}
+
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125028817-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-125028817-1');
+    </script>
+
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% with self.get_site.site_name as site_name %}
+                    {% if site_name %}- {{ site_name }}{% endif %}
+                {% endwith %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Compiled and minified CSS -->
+        <!-- <link rel="stylesheet" href="{% static 'css/materialize.min.css'%}"> -->
+        <!-- Compiled and minified JavaScript -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {# Global stylesheets #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+        <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700" rel="stylesheet">
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+
+        {% wagtailuserbar %}
+        {% include 'navbar.html' %}
+        {% block before-content %}{% endblock %}
+        <div class="container {% block container_class %}{% endblock %}">
+                {% block content %}{% endblock %}
+        </div>
+        {% block after-content %}{% endblock %}
+        {# Global javascript #}
+
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+        {% endblock %}
+        {% include 'footer.html' %}
+
+    </body>
+</html>

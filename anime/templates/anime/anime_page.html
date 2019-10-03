@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load anime_tags %}
+
+{% block content %}
+<div class="row anime-content">
+    <div class="col s12 m6">
+            <h1 class="anime-title">{{ page.title }}</h1>
+            <div class="anime-section-information">
+                <h6 class="weight-600">Nội dung:</h6>
+                <article>
+                        {% for block in page.body %}
+                            <section>{% include_block block %}</section>
+                        {% endfor %}
+                </article>
+            </div>
+
+ 
+            <div class="anime-section-meta-info">
+                    <div><h6 class="weight-600">Sản xuất: </h6><a href="{% url 'anime:studio' page.studio.slug %}">{{ page.studio }}</a></div>
+                    <div><h6 class="weight-600">Phát hành: </h6><a href="{% url 'anime:release_time' page.season page.year %}">{{ page.season|title }} {{ page.year }}</a></div>
+                    <div><h6 class="weight-600">Hình thức: </h6><a href="{% url 'anime:format' page.format %}">{{ page.format|to_space:"-"|upper }}</a></div>
+                </div>
+            {% if page.tags.all.count %}
+            <div class="anime-section-tags">
+            <h6><span class="weight-600">Thể loại:</span></h6>
+                <div class="tags">
+                    {% for tag in page.tags.all %}
+                    <a class="anime-tag-item" href="{% url 'anime:tag' tag %}">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            <div class="anime-section-go-back"><a class="see-animes-btn" href="{{ page.get_parent.url }}"><i class="material-icons">arrow_back</i><span class="flow-text"> Xem tất cả Anime </span></a></div>
+    </div>
+    <div class="col s12 m1"></div>
+    <div class="col s12 m5">
+        <div>{% image page.featured_image fill-675x970 %}</div>
+    </div>
+</div>
+{% endblock %}

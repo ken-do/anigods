@@ -1,0 +1,40 @@
+.container {
+    min-height: 90vh;
+    padding: remy(30) 0;
+}
+
+.container img {
+    width: 100% !important;
+    height: auto;
+}
+
+.intro {
+    margin-bottom: remy(30);
+}
+
+h1.intro {
+    margin-bottom: remy(80);
+}
+
+li.collection-item {
+    .row {
+        margin-top: remy(20);
+    }
+    &.mock-item-header {
+        background: #e8e8e8;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .mock-item-name {
+        font-weight: bold;
+        font-size: remy(16);
+    }
+}
+
+.card-content>div {
+    margin: remy(10) 0;
+}
+
+[class*=project-section-] {
+    margin-bottom: remy(30);
+}

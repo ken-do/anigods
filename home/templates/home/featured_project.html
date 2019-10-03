@@ -1,0 +1,13 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="col s12 m6">
+    <div class="card">
+        <div class="card-image">
+            <a href="{% pageurl value %}">{% image value.specific.featured_image fill-612x455 class="activator"%}</a>
+        </div>
+        <div class="card-content">
+            <a href="{% pageurl value %}"><span class="card-title">{{value.title}}</span></a>   
+            <p>{{value.specific.intro}}</p>
+        </div>
+    </div>
+</div>

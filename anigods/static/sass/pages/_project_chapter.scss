@@ -1,0 +1,138 @@
+.template-projectchapterpage    {
+
+    background-color: $color-grey;
+
+    .container{
+        padding: 0;
+        max-width:960px;
+
+    }
+
+    .container .row .col{
+        margin: 0;
+    }
+
+    ul.chapter-content{
+        margin: 0;
+    }
+
+    .row.chapter-nav {
+        align-items: center;
+        background: white;
+        margin: 0;
+
+        &-top{
+            margin-bottom: remy(60);
+        }
+    
+        &-bottom{
+            margin-top: remy(60);
+        }
+        
+        .col {
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        h1{
+            font-size: 2.28rem;
+            margin: 1.52rem 0 .912rem;
+            line-height: 110%;
+            font-weight: 400;
+        }
+
+        i{
+            font-size: remy(28);
+        }
+
+        .chapter-nav-icons{
+            a{
+                color: $color-orange-light;
+
+                &:hover{
+                    color: $color-orange;
+                }
+            }
+
+            span{
+                margin: 0 3px;
+            }
+
+            // .chapter-prev {
+            //     margin-left: 20px;
+            // }
+            // .chapter-parent{
+            //     margin-left: remy(20);
+            // }
+        
+        }
+
+
+    }
+}
+
+
+
+    /****
+
+*****************
+  Media Query Classes
+**********************/
+
+@media #{$small-and-down} {
+    // styles for small screens and down
+
+}
+
+
+@media #{$medium-and-down} {
+    .template-projectchapterpage{
+        .container{
+            width: unset;
+        }
+        .row.chapter-nav {
+
+            padding: 0 remy(25);
+
+            h1{
+                font-size: remy(26);
+            }
+        }
+    }
+}
+
+
+@media #{$medium-and-up} {
+    // styles for medium screens and larger
+    .template-projectchapterpage    {
+
+        .row.chapter-nav {
+            padding: 0 remy(65);
+        }
+    }    
+}
+
+@media #{$large-and-up} {
+    .template-projectchapterpage    {
+
+
+    .row.chapter-nav {
+        padding: 0 remy(170);
+
+        i{
+            font-size: remy(35);
+        }
+    }
+    }
+}
+
+@media #{$extra-large-and-up} {
+    // styles for extra large screens and up
+
+    .template-projectchapterpage    {
+
+        .row.chapter-nav {
+            padding: 0 remy(200);
+          }
+        }
+}

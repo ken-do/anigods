@@ -1,0 +1,146 @@
+.template-homepage {
+    .slider {
+        height: 100vh !important;
+        .slides {
+            height: 100vh !important;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 0% 100%);
+        }
+        .slides li::before {
+            content: '';
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.72) 5%, rgba(0, 0, 0, 0.0) 70%);
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+        }
+        .slides li .caption {
+            top: 50%;
+            transform: translateY(-50%) !important;
+            width: 60%;
+            text-align: left;
+        }
+        .slide-cta a {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 25px;
+            color: white;
+            border: 1px solid white;
+            border-radius: 4px;
+            margin-top: 20px;
+            transition: all 0.4s;
+            &:hover {
+                background: white;
+                color: $color-grey-dark;
+            }
+        }
+        .indicators {
+            text-align: right;
+            bottom: 3%;
+            margin-right: 5%;
+        }
+        .indicators .indicator-item.active {
+            background: $color-red-bright;
+        }
+        h5 {
+            line-height: 36px;
+        }
+    }
+    .seasonal-anime,
+    .anigods-project {
+        padding: 40px;
+    }
+    .seasonal-anime {
+        h1 {
+            margin-top: 0;
+        }
+        h1,
+        h3 {
+            text-align: center;
+        }
+        .show-more-btn {
+            position: relative;
+            top: 50px;
+        }
+    }
+    .anigods-project {
+        background: black;
+        clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+        h1 {
+            margin-top: 80px;
+        }
+        h3 {
+            line-height: 36px;
+        }
+        h1,
+        h3 {
+            text-align: center;
+            color: white;
+        }
+    }
+    footer {
+        ul li {
+            list-style-type: circle;
+        }
+    }
+}
+
+/****
+
+*****************
+  Media Query Classes
+**********************/
+
+@media #{$small-and-down} {
+    // styles for small screens and down
+    .template-homepage {
+        .slider {
+            .slides {
+                h5 {
+                    font-size: 20px;
+                    line-height: 36px;
+                }
+            }
+        }
+    }
+}
+
+@media #{$medium-and-down} {
+    .template-homepage {
+        .slider {
+            .slides li img {
+                background-position: 60%;
+            }
+        }
+    }
+}
+
+@media #{$medium-and-up} {
+    // styles for medium screens and larger
+    .template-homepage {
+        .slider {
+            .slides li .caption {
+                width: 30%;
+            }
+        }
+    }
+}
+
+@media #{$large-and-up} {
+    .template-homepage {
+        header {
+            position: absolute;
+            top: 0;
+            display: block;
+            width: 100%;
+            nav.black {
+                background-color: transparent !important;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+@media #{$extra-large-and-up} {
+    // styles for extra large screens and up
+}

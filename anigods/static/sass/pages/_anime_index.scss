@@ -1,0 +1,140 @@
+    .anime-card {
+
+        a{
+            color: $color-orange-light;
+
+            &:hover{
+                color: $color-orange;
+            }
+        }
+        .card-content{
+            padding: 0;
+        }
+
+        .anime-card-title-studio {
+            position: absolute;
+            bottom: 0;
+            background: rgba(35, 29, 29, 0.8196078431372549);
+            color: white;
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: remy(15) remy(10);
+        }
+        h2.anime-card-title {
+            margin: 0;
+            font-weight: bold;
+            font-size: unset;
+            line-height: unset;
+        }
+        h2.anime-card-title a {
+            color: #fff;
+            font-size: remy(20);
+        }
+        
+        p.anime-card-studio {
+            .project-section-go-back {
+                margin-top: remy(50);
+            }
+            margin-top: 0;
+            color: $color-orange;
+        }
+
+        .card-image{
+            overflow: hidden;
+        }
+
+        .card-image img {
+            height: 100%;
+            transition: all .4s;
+            width: auto!important;
+            max-width: none;
+        }
+
+        &:hover .card-image img{
+            transform: scale(1.2,1.2);
+        }
+        .anime-card-release-time {
+            text-align: center;
+            padding: 10px;
+            background: $color-grey-light;
+            font-weight: bold;
+        }
+
+        p.anime-card-intro {
+            padding: remy(10) remy(25);
+            margin-bottom: remy(25);
+        }
+
+        .anime-card-format {
+            text-align: center;
+            border-bottom: 1px solid $color-grey-light;
+            border-top: 1px $color-grey-light;
+        }
+
+        .card-tags {
+            bottom: 0;
+            display: block;
+            left: 0;
+            margin-bottom: 0;
+            padding: 5px 0;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            background: $color-grey-light;
+
+        }
+
+    }
+
+
+    /****
+
+*****************
+  Media Query Classes
+**********************/
+
+@media #{$small-and-down} {
+    // styles for small screens and down
+}
+
+@media #{$medium-and-down} {
+    .row {
+            
+        .card.horizontal.anime-card {
+            .card-image{
+                max-width: 100%;
+            }
+        }
+
+    }
+}
+
+
+
+@media #{$medium-and-up} {
+    // styles for medium screens and larger
+}
+
+@media #{$large-and-down} {
+    .card.horizontal.anime-card {
+        .card-image{
+            img {
+                width:100%!important;
+            }
+        }
+    }
+}
+
+@media #{$large-and-up} {
+    .card.horizontal.anime-card {
+        .card-image{
+            width: 50%;
+        }
+    }
+}
+
+@media #{$extra-large-and-up} {
+    // styles for extra large screens and up
+}
+

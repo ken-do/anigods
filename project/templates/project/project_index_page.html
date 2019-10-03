@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-projectindexpage{% endblock %}
+
+{% block content %}
+<div class="{{content_wrapper_class}}">
+    <h1>{{ page.title }}</h1>
+    <h3 class="intro">{{ page.intro }}</h3>
+    <div class="row">
+    {% for project in page.get_children %}
+    
+    {% if page.layout == "grid-2-cols"%}
+    <div class="col s12 m6">
+            <div class="card sticky-action">
+                    <div class="card-image">
+                            <a href="{% pageurl project %}">{% image project.specific.featured_image fill-612x455 class="activator"%}</a>
+                        </div>
+    {% elif page.layout == "grid-3-cols" %}
+    <div class="col s12 m6 l4">
+            <div class="card sticky-action">
+                    <div class="card-image">
+                            <a href="{% pageurl project %}">{% image project.specific.featured_image fill-401x455 class="activator"%}</a>
+                        </div>
+    {% else %}
+    <div class="col s12 m4 l3">
+            <div class="card sticky-action">
+                    <div class="card-image">
+                            <a href="{% pageurl project %}">{% image project.specific.featured_image fill-320x455 class="activator"%}</a>
+                        </div>
+    {% endif %}
+                    <div class="card-content">
+                        <a href="{% pageurl project %}"><span class="card-title activator grey-text text-darken-4">{{ project.specific.title }}</span></a>
+                      {% if project.specific.tags %}
+                      <div class="card-tags"><span class="weight-600">Thể loại:</span> 
+                        {% for tag in project.specific.tags.all %}
+                            {% if forloop.last %}
+                            <a href="{% url 'project:tag' tag %}">{{ tag }}</a>
+                            {% else %}
+                            <a href="{% url 'project:tag' tag %}">{{ tag }},</a>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+          </div>
+
+    {% endfor %}
+</div>
+
+</div>
+{% endblock %}

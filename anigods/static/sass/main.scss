@@ -1,0 +1,51 @@
+@charset 'utf-8';
+$fa-font-path: "vendors/fontawesome/webfonts";
+
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+@import 'abstracts/placeholders';
+
+
+@import 'vendors/fontawesome/sass/brands';
+@import 'vendors/fontawesome/sass/fontawesome';
+@import 'vendors/fontawesome/sass/solid';
+@import 'vendors/materialize/sass/materialize';
+
+@import 'vendors_extended/materialize';
+
+
+@import 'base/helper';
+@import 'base/typography';
+@import 'base/animations';
+
+
+@import 'layout/navigation';
+@import 'layout/grid';
+@import 'layout/header';
+@import 'layout/container';
+@import 'layout/footer';
+@import 'layout/sidebar';
+@import 'layout/forms';
+@import 'layout/modals';
+
+@import 'components/buttons';   
+@import 'components/tags';
+@import 'components/loader';
+@import 'components/dropdown';
+
+@import 'pages/home';
+@import 'pages/project';
+@import 'pages/project_index';
+@import 'pages/project_tag_index';
+@import 'pages/project_chapter';    
+@import 'pages/project_episode';    
+@import 'pages/anime';
+@import 'pages/anime_index';
+@import 'pages/users_settings';
+
+
+@import 'themes/theme';
+@import 'themes/admin';
+
+@import './shame';

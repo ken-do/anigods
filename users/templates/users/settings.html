@@ -1,0 +1,70 @@
+
+
+{% extends "base.html" %}
+{% load user_tags %}
+{% block title %}Edit your profile{% endblock %}
+
+{% block heading_text %}Edit Your Profile{% endblock %}
+
+{% block content %}
+    <div class="row profile-settings">
+        <div class="col s12 l6">
+
+        <form method="POST" action="." class="form-horizontal" enctype="multipart/form-data" id="user-settings-form">
+            {% csrf_token %}
+            {% for error in form.non_field_errors %}
+                <div class="form-group has-error text-danger">
+                    {{ error }}
+                </div>
+            {% endfor %}
+            {% for field in form %}
+                <div class="form-group has-error text-danger">
+                    {{ field.errors }}
+                </div>
+                {% if field.field.widget.input_type == 'file' %}
+                <div class="form-group">
+                        <div class="avatar-upload">
+                                {{ field.label_tag }}
+                            <div class="avatar-edit">
+                                <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" id="imageUpload" />                        
+                                <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                                {% if user.avatar %}
+                                <div id="imagePreview" style="background-image: url('/media/{{user.avatar}}');">
+                                {% else %}
+                                <div id="imagePreview" style="background-image: url('/static/images/default-profile_50x50.png');">
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                {% elif field.html_name == 'display_name' %}
+                <div class="form-group">
+
+                    {% if  user.name_last_updated_at|more_than_60_days %}
+                        {{ field.label_tag }}
+                        <div class="username-field">
+                        <input type="{{ field.field.widget.input_type }}" id="{{ field.html_name }}" name="{{ field.html_name }}" placeholder="{{ user.display_name }}"  maxlength="30" disabled/>                        
+                            <i class="fas fa-pencil-alt"></i>
+                        </div>
+                        <div class="username-note"><span class="username-note-title">Lưu ý: </span><span class="username-note-text">Tên hiển thị chỉ bao gồm 30 ký tự, chỉ bao gồm chữ cái, số tự nhiên và dấu gạch dưới "_", và chỉ được thay đổi mỗi 60 ngày.</span></div>
+                    {% else %}
+                        {{ field.label_tag }}
+                        <div class="username">{{ user.display_name }}</div>
+                    {% endif %}
+                </div>
+                {% else %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+                {% endif %}
+            {% endfor %}
+            <label>Email:</label>
+            <div class="email">{{user.email}}</div>
+            <div class="submit-btn"><button type="submit" class="btn-large form-group">Save</button></div>
+        </form>
+        </div>
+    </div>
+{% endblock %}

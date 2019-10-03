@@ -1,0 +1,89 @@
+{% load wagtailcore_tags socialaccount %}
+{% providers_media_js %}
+{% load static %}
+<header class="header">
+    <ul id="dropdown-desktop" class="dropdown-content grey darken-4">
+        <li><a href="{% slugurl 'du-an' %}manga">Manga</a></li>
+        <li><a href="{% slugurl 'du-an' %}anime">Anime</a></li>
+    </ul>
+    <ul id="dropdown-mobile" class="dropdown-content grey darken-4">
+      <li><a href="{% slugurl 'du-an' %}manga">Manga</a></li>
+      <li><a href="{% slugurl 'du-an' %}anime">Anime</a></li>
+    </ul>
+    {% if user.is_authenticated %}
+    <ul id="dropdown-user" class="dropdown-content  grey darken-4">
+      <li><a href="{% url 'users:settings' %}">Tùy chỉnh<i class="material-icons right">settings</i></a></li>
+      <li><a href="{% url 'account_logout' %}">Đăng xuất<i class="material-icons right">exit_to_app</i></a></li>
+    </ul>
+    {% endif %}
+    <nav class="black">
+        <div class="nav-container"> 
+          <a href="/" class="brand-logo"><img src="{% static 'images/anigods-logo.png' %}" alt="Anigods Logo" width="64" /></a>
+          <div class="input-field search-bar">
+              <input type="text" id="autocomplete-input" class="autocomplete">
+              <label for="autocomplete-input">Tìm kiếm...</label>
+              <i class="material-icons prefix  hide-on-med-and-down">search</i>
+            </div>
+          <a href="#" data-target="mobile-menu" class="sidenav-trigger each"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/">Trang Chủ</a></li>
+            <li><a href="/anime">Season</a></li>
+            <li class="nav-item-dropdown"><a class="dropdown-trigger" href="#!" data-target="dropdown-desktop">Dự án<i class="material-icons right">arrow_drop_down</i></a></li>
+            {% if user.is_authenticated %}
+            <li  class="nav-item-dropdown nav-item-user"><a  href="#!" class="dropdown-trigger waves-effect waves-light modal-trigger" data-target="dropdown-user" >
+              {% if user.avatar %}
+              <img class="user-profile-thumbnail" src="/media/{{user.avatar}}" width="50" height="50">
+              {% else %}
+              <img class="user-profile-thumbnail" src="{% static 'images/default-profile_50x50.png' %}">
+              {% endif %}
+            </a></li>
+            {% else %}
+            <li class="nav-item-login"><a  href="#login-modal" class="waves-effect waves-light btn modal-trigger deep-orange darken-4">Đăng Nhập <i class="fas fa-sign-in-alt right"></i></a></li>
+            {% endif %}
+          </ul>
+          <a href="#search-bar" id-target="#mobile-search-bar" class="mobile-nav-icon icon-search right hide-on-large-only"><i class="material-icons prefix">search</i></i></a>        
+          <a href="https://www.facebook.com/anigods/" target="_blank" class="mobile-nav-icon icon-facebook right hide-on-large-only"><i class="fab fa-facebook"></i></a>        
+        </div>
+      </div>
+    </nav>
+    {% if not user.is_authenticated %}
+    <!-- Modal Structure -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content center-align  teal lighten-5">
+        <h4>Đăng Nhập</h4>
+        <p>Đăng nhập để bắt đầu bình luận</p>
+        <p><a class="waves-effect waves-light btn-large white" href="{% provider_login_url 'google' %}">
+          <span class="login-icon login-icon-google svgIcon svgIcon--googleNew svgIcon--25px"><svg class="svgIcon-use" width="25" height="25"><g fill="none" fill-rule="evenodd"><path d="M20.66 12.693c0-.603-.054-1.182-.155-1.738H12.5v3.287h4.575a3.91 3.91 0 0 1-1.697 2.566v2.133h2.747c1.608-1.48 2.535-3.65 2.535-6.24z" fill="#4285F4"></path><path d="M12.5 21c2.295 0 4.22-.76 5.625-2.06l-2.747-2.132c-.76.51-1.734.81-2.878.81-2.214 0-4.088-1.494-4.756-3.503h-2.84v2.202A8.498 8.498 0 0 0 12.5 21z" fill="#34A853"></path><path d="M7.744 14.115c-.17-.51-.267-1.055-.267-1.615s.097-1.105.267-1.615V8.683h-2.84A8.488 8.488 0 0 0 4 12.5c0 1.372.328 2.67.904 3.817l2.84-2.202z" fill="#FBBC05"></path><path d="M12.5 7.38c1.248 0 2.368.43 3.25 1.272l2.437-2.438C16.715 4.842 14.79 4 12.5 4a8.497 8.497 0 0 0-7.596 4.683l2.84 2.202c.668-2.01 2.542-3.504 4.756-3.504z" fill="#EA4335"></path></g></svg></span>
+          <span>Đăng nhập bằng Google</span>
+        </a>
+      </p>
+        <p><a class="waves-effect waves-light btn-large white" href="{% provider_login_url 'facebook' method='js_sdk' %}">
+          <span class="login-icon login-icon-facebook svgIcon svgIcon--facebookSquare svgIcon--25px svgIcon--facebookBlue"><svg class="svgIcon-use" width="25" height="25"><path d="M20.292 4H4.709A.709.709 0 0 0 4 4.708v15.584c0 .391.317.708.709.708h8.323v-6.375h-2.125v-2.656h2.125V9.844c0-2.196 1.39-3.276 3.348-3.276.938 0 1.745.07 1.98.1v2.295h-1.358c-1.066 0-1.314.507-1.314 1.25v1.756h2.656l-.531 2.656h-2.125L15.73 21h4.562a.708.708 0 0 0 .708-.708V4.708A.708.708 0 0 0 20.292 4" fill-rule="evenodd"></path></svg></span>
+          <span>Đăng nhập bằng Facebook</span>
+        </a>
+        </p>
+      </div>
+    </div>
+    {% endif %}
+    <div class="input-field search-bar hide-on-large-only" id="mobile-search-bar">
+      <input type="text" id="autocomplete-input" class="autocomplete">
+      <label for="autocomplete-input">Tìm kiếm...</label>
+      <i class="material-icons prefix  hide-on-med-and-down">search</i>
+    </div>
+    <ul class="sidenav" id="mobile-menu">
+        <li><a href="/">Trang Chủ</a></li>
+        <li><a href="/anime">Season</a></li>
+        <li  class="nav-item-dropdown"><a class="dropdown-trigger" href="#!" data-target="dropdown-mobile">Dự án<i class="material-icons right">arrow_drop_down</i></a></li>
+        {% if user.is_authenticated %}
+        <li  class=" nav-item-user">
+          <a class="social-login waves-effect waves-light modal-trigger deep-orange darken-4 btn" href="{% url 'users:settings' %}"><span>Tùy chỉnh</span><i class="material-icons right">settings</i></a>
+          <a class="social-logout waves-effect waves-light modal-trigger grey lighten-1 btn" href="{% url 'account_logout' %}"><span>Đăng xuất </span><i class="fas fa-sign-out-alt right"></i></a>
+        </li>
+        {% else %}
+        <li class="nav-item-login"><a  href="#login-modal" class="social-login waves-effect waves-light btn modal-trigger deep-orange darken-4">Đăng Nhập <i class="fas fa-sign-in-alt right"></i></a></li>
+        {% endif %}
+      </ul>
+    <div class="progress">
+        <div class="indeterminate"></div>
+    </div>  
+  </header>

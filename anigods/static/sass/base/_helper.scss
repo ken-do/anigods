@@ -1,0 +1,28 @@
+.weight-600 {
+    font-weight: 600;
+}
+
+.mb-large {
+    margin-bottom: remy($margin-large);
+}
+
+.adjusted-height.container {
+    height: calc(100vh - 144px);
+}
+
+.height-100pct {
+    height: 100%;
+}
+
+.width-100pct {
+    width: 100%;
+}
+a.disabled{
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+a.disabled i{
+    color: $color-grey;
+}
+

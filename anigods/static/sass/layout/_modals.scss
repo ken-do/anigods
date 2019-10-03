@@ -1,0 +1,26 @@
+
+
+div#login-modal{
+
+    .modal-content{
+        padding: remy(48) remy(24);
+    
+    
+        a {
+            color: black;
+            width: 350px;
+        }
+
+        .login-icon{
+            position: relative;
+            top: 6px;
+        }
+        
+        
+        .svgIcon--facebookBlue {
+            color: #3b5998!important;
+            fill: #3b5998!important;
+        }
+    }    
+
+}
